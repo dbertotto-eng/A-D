@@ -1,6 +1,7 @@
 #include<stdio.h>
 
 void inverter(int *v, int n);
+void soma(int *v, int n);
 
 int main(){
 
@@ -21,8 +22,8 @@ int main(){
     }
     printf("\n");
 
-    soma(p, n);
     inverter(p, n);
+    soma(p ,n);
     return 0;
 }
 
@@ -38,4 +39,13 @@ void inverter(int *v, int n){
         printf("%d ", *(v + i));
     }
     printf("\n");
+}
+
+void soma(int *v, int n){
+    int aux = 0;
+    for(int i = 0; i < n; i++){
+        aux += *(v + i);
+    }
+    printf("Soma dos elementos: %d\n", aux);
+    
 }
