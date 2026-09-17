@@ -198,6 +198,59 @@ void liberaLista(Head *lista){
     lista->pFirst = NULL;
 }
 
+void inverte_valores(Head *lista){
+    int contador = 0;
+    if (listaVazia(lista))
+    {
+        printf("Lista Vazia");
+        return;
+    }
+    
+    Nodo *anterior = NULL;
+    Nodo *proximo;
+    Nodo *atual = lista->pFirst;
+
+    while (atual != NULL)
+    {
+        proximo = atual->prox; //proximo do atual
+        atual->prox = anterior; //atual->prox recebe anterior, no primeiro loop é NULL
+        anterior = atual; //aterior recebe atual
+        atual = proximo; //
+    }
+    lista->pFirst = anterior;
+
+    imprimirLista(lista);
+}
+
+void inverte_Nvalores(Head *lista, int n){
+    if (listaVazia(lista))
+    {
+        printf("Lista Vazia");
+        return;
+    }
+
+    Nodo *anterior = NULL;
+    Nodo *proximo;
+    Nodo *atual = lista->pFirst;
+    int cont = 0;
+
+    while (atual != NULL)
+    {
+        if (cont <= n)
+        {
+        proximo = atual->prox; //proximo do atual
+        atual->prox = anterior; //atual->prox recebe anterior, no primeiro loop é NULL
+        anterior = atual; //aterior recebe atual
+        atual = proximo; //
+        }
+    }
+    
+    lista->pFirst = anterior;
+
+    imprimirLista(lista);
+
+}
+
 int main(){
     Head *ini;
 
@@ -216,6 +269,7 @@ int main(){
         printf("5 - Buscar pelo Cod\n");
         printf("6 - Imprimeir Lista\n");
         printf("7 - Liberar Lista\n");
+        printf("8 - Inverte a Lista\n");
         printf("-1 - Sair\n");
         scanf("%d", &op);
 
@@ -283,6 +337,9 @@ int main(){
 
         case 7:
             liberaLista(ini);
+            break;
+        case 8:
+            inverte_valores(ini);
             break;
         case -1:
             printf("Saindo...");
