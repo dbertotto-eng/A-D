@@ -232,19 +232,18 @@ void inverte_Nvalores(Head *lista, int n){
     Nodo *anterior = NULL;
     Nodo *proximo;
     Nodo *atual = lista->pFirst;
-    int cont = 0;
+    Nodo *aux = atual;
+    int cont = 1;
 
-    while (atual != NULL)
+    while (atual != NULL && cont <= n)
     {
-        if (cont <= n)
-        {
-        proximo = atual->prox; //proximo do atual
-        atual->prox = anterior; //atual->prox recebe anterior, no primeiro loop é NULL
-        anterior = atual; //aterior recebe atual
-        atual = proximo; //
-        }
+        cont++;
+        proximo = atual->prox; //proximo do atual / atual = 1, proximo = 2
+        atual->prox = anterior; //atual->prox recebe anterior, no primeiro loop é NULL// atual->prox(2) = NULL
+        anterior = atual; //aterior recebe atual / anterior = 1;
+        atual = proximo; // atual = 2;
     }
-    
+    lista->pFirst->prox = atual;    
     lista->pFirst = anterior;
 
     imprimirLista(lista);
@@ -270,6 +269,7 @@ int main(){
         printf("6 - Imprimeir Lista\n");
         printf("7 - Liberar Lista\n");
         printf("8 - Inverte a Lista\n");
+        printf("9 - Inverte N Elementos da Lista\n");
         printf("-1 - Sair\n");
         scanf("%d", &op);
 
@@ -341,6 +341,15 @@ int main(){
         case 8:
             inverte_valores(ini);
             break;
+        case 9:
+        {
+            int n = 0;
+            printf("Digite o valor de n elementos para serem invertidos");
+            scanf("%d", &n);
+
+            inverte_Nvalores(ini, n);
+            break;
+        }
         case -1:
             printf("Saindo...");
             break;
